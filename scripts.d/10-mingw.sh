@@ -8,10 +8,6 @@ ffbuild_enabled() {
     return 0
 }
 
-ffbuild_dockerstage() {
-    to_df "RUN --mount=src=patches/mingw-w64,dst=/patches run_stage /stage.sh"
-}
-
 ffbuild_dockerlayer() {
     to_df "COPY --link --from=${SELFLAYER} /opt/mingw/. /"
     to_df "COPY --link --from=${SELFLAYER} /opt/mingw/. /opt/mingw"
@@ -26,11 +22,6 @@ ffbuild_dockerdl() {
 }
 
 ffbuild_dockerbuild() {
-    for patch in /patches/*.patch; do
-        echo "Applying $patch"
-        git am < "$patch"
-    done
-
     if [[ -z "$COMPILER_SYSROOT" ]]; then
         COMPILER_SYSROOT="$(${CC} -print-sysroot)/usr/${FFBUILD_TOOLCHAIN}"
     fi
