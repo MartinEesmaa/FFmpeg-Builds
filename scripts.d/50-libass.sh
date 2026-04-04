@@ -8,6 +8,7 @@ ffbuild_depends() {
     echo fonts
     echo fribidi
     echo libiconv
+    echo libunibreak
 }
 
 ffbuild_enabled() {
@@ -22,6 +23,7 @@ ffbuild_dockerbuild() {
         --disable-shared
         --enable-static
         --with-pic
+        --enable-libunibreak
     )
 
     if [[ $TARGET == win* || $TARGET == linux* ]]; then
