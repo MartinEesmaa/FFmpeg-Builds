@@ -14,40 +14,38 @@ ffbuild_enabled() {
 }
 
 ffbuild_dockerbuild() {
-    mkdir build && cd build
+    ./autogen.sh --noconf
 
     local myconf=(
+        ac_cv_va_copy="C99"
         --prefix="$FFBUILD_PREFIX"
-        --buildtype=release
-        --default-library=static
-        -Ddoc=disabled
-        -Diconv=enabled
-        -Dxml-backend=libxml2
-        -Dtools=disabled
-        -Dcache-build=disabled
-        -Dtests=disabled
+        --disable-docs
+        --enable-libxml2
+        --enable-iconv
+        --disable-shared
+        --enable-static
     )
 
     if [[ $TARGET == linux* ]]; then
         myconf+=(
             --sysconfdir=/etc
             --localstatedir=/var
-            --cross-file=/cross.meson
+            --host="$FFBUILD_TOOLCHAIN"
         )
     elif [[ $TARGET == win* ]]; then
         myconf+=(
-            --cross-file=/cross.meson
+            --host="$FFBUILD_TOOLCHAIN"
         )
     else
         echo "Unknown target"
         return -1
     fi
 
-    meson setup "${myconf[@]}" ..
-    ninja -j"$(nproc)"
-    DESTDIR="$FFBUILD_DESTDIR" ninja install
+    ./configure "${myconf[@]}"
+    make -j$(nproc)
+    make install DESTDIR="$FFBUILD_DESTDIR"
 
-    rm -rf "$FFBUILD_DESTPREFIX"/{var,share,etc}
+    rm -rf "$FFBUILD_DESTDIR"/{var,etc}
 }
 
 ffbuild_configure() {
