@@ -16,30 +16,19 @@ ffbuild_enabled() {
 }
 
 ffbuild_dockerbuild() {
-    mkdir build && cd build
+    ./autogen.sh
 
     local myconf=(
         --prefix="$FFBUILD_PREFIX"
-        --buildtype=release
-        --default-library=static
-        -Dtest=disabled
-        -Dcompare=disabled
-        -Dprofile=disabled
-        -Dfuzz=disabled
-        -Dcheckasm=disabled
-        -Dfontconfig=enabled
-        -Dasm=enabled
-        -Dlibunibreak=enabled
+        --disable-shared
+        --enable-static
+        --with-pic
+        --enable-libunibreak
     )
 
-    if [[ $TARGET == win* ]]; then
+    if [[ $TARGET == win* || $TARGET == linux* ]]; then
         myconf+=(
-            -Ddirectwrite=enabled
-            --cross-file=/cross.meson
-        )
-    elif [[ $TARGET == linux* ]]; then
-        myconf+=(
-            --cross-file=/cross.meson
+            --host="$FFBUILD_TOOLCHAIN"
         )
     else
         echo "Unknown target"
@@ -48,9 +37,9 @@ ffbuild_dockerbuild() {
 
     export CFLAGS="$CFLAGS -Dread_file=libass_internal_read_file"
 
-    meson setup "${myconf[@]}" ..
-    ninja -j$(nproc)
-    DESTDIR="$FFBUILD_DESTDIR" ninja install
+    ./configure "${myconf[@]}"
+    make -j$(nproc)
+    make install DESTDIR="$FFBUILD_DESTDIR"
 }
 
 ffbuild_configure() {
