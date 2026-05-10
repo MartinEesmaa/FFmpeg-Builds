@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/fraunhoferhhi/vvenc.git"
-SCRIPT_COMMIT="9ff4e0d35d074c818a44fa252245cd0575672cc3"
+SCRIPT_COMMIT="b1bc3bd9c51f556f28ae2cdfa222703a630f1f99"
 
 ffbuild_enabled() {
     [[ $TARGET == winarm* ]] && return -1
