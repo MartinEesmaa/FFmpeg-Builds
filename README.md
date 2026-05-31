@@ -20,6 +20,20 @@ Sometimes rarely I had to manually fix older compatibility issues like Windows f
 - External features of video by AVS3, Fraunhofer HHI VVDEC, AVS, MPEG-5 EVC, MPEG-5 LCEVC decoder.
 - External features of audio by ILBC, Google LC3, Microsoft GSM, MP3 Shine, Speex, AMR-WB, CELT and MPEG-H 3D Audio encoder from Ittiam.
 
+### To-do tasks
+
+Here is Martin Eesmaa's FFmpeg-Builds to-do tasks implementation in future as dated on 31st May 2026:
+
+- Support more features as possible
+- Mac OS X cross compilation FFmpeg via osxcross on Linux
+- Windows XP native win32 support with patches?
+- Android, iOS & FreeBSD cross compilation support? (maybe?)
+- Bring old superseeded features back to custom FFmpeg (if possible)
+- Test more architectures?
+- Some librempeg files for extra support to custom FFmpeg?
+- SVT-AV1-PSY support?
+- Try test old operating systems with third party extended kernel (possible way, I think?)
+
 Implement missing features in future:
 
 ```
