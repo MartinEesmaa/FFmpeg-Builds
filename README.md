@@ -13,7 +13,8 @@ Sometimes rarely I had to manually fix older compatibility issues like Windows f
 
 - External support to SVT encoders of HEVC and VP9
 - Includes nonfree binaries with fdkaac (Fraunhofer AAC library)
-- Dolby AC4 native experimental decoding support
+- Dolby AC4 native experimental decoding support (patch from librempeg)
+- Dolby TrueHD 7.1 surround native encoding support (patch from librempeg)
 - Apple AAC AudioToolbox encoder support (Windows only, requires iTunes or 8 dll files*)
 - Additional automated Windows builds of x86 and ARM64.
 - Additional external features follows libbsb2, CD reading, ModPlug, QR encoding/decoding.
@@ -36,7 +37,7 @@ Here is Martin Eesmaa's FFmpeg-Builds to-do tasks implementation in future as da
 
 Implement missing features in future:
 
-```
+```text
 ladspa lcms2 libcodec2 libdc1394 libflite
 libglslang libiec61883 libklvanc liblensfun
 libopencv libopenvino librsvg libtensorflow 
@@ -67,7 +68,7 @@ DLL files without iTunes installed needs require 8 DLL files to order encoder `a
 
 It can be found on: `C:\Program Files\iTunes\`:
 
-```
+```text
 CoreAudioToolbox.dll libdispatch.dll CoreFoundation.dll objc.dll libicuin.dll ASL.dll libicuuc.dll icudt62.dll
 ```
 
@@ -85,7 +86,7 @@ You can only decode via command argument `-channel_layout`.
 
 For example, ensure to have MediaInfo for audio channels count:
 
-```
+```bash
 # Mono audio channel file
 ffmpeg_vvceasy -channel_layout mono -i MHM.mp4 MHM.wav
 # Stereo audio channel file
