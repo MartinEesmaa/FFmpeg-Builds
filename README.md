@@ -15,7 +15,7 @@ Sometimes rarely I had to manually fix older compatibility issues like Windows f
 - Includes nonfree binaries with fdkaac (Fraunhofer AAC library)
 - Dolby AC4 native experimental decoding support (patch from librempeg)
 - Dolby TrueHD 7.1 surround native encoding support (patch from librempeg)
-- Alpha experimental Dolby E-AC-3 Surround 7.1 encoding support
+- Alpha experimental Dolby E-AC-3 Surround 7.1 encoding support (afterwards, require md71 for finalize muxing)
 - Apple AAC AudioToolbox encoder support (Windows only, requires iTunes or 8 dll files*)
 - Additional automated Windows builds of x86 and ARM64.
 - Additional external features follows libbsb2, CD reading, ModPlug, QR encoding/decoding.
