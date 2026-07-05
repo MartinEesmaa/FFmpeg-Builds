@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/ggml-org/whisper.cpp.git"
-SCRIPT_COMMIT="8443cf05e3fa8ce1b32348e1bcbcf8fc31f7f3ae"
+SCRIPT_COMMIT="6fc7c33b4c3a2cec83e4b65abd5e96a890480375"
 
 ffbuild_depends() {
     echo base
@@ -12,7 +12,7 @@ ffbuild_depends() {
 ffbuild_enabled() {
     [[ $TARGET != *32 ]] || return -1
     (( $(ffbuild_ffver) >= 800 )) || return -1
-    return 0
+    return -1
 }
 
 ffbuild_dockerbuild() {

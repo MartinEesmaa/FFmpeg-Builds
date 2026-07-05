@@ -44,6 +44,7 @@ ffbuild_depends() {
     echo libcaca
     echo libcelt
     echo libgsm
+    echo libcurl
     echo libjxl
     echo libmad
     echo libmp3lame
