@@ -100,8 +100,6 @@ ffbuild_depends() {
     echo xvid
     echo zimg
     echo zvbi
-
-    echo rpath
 }
 
 ffbuild_enabled() {
