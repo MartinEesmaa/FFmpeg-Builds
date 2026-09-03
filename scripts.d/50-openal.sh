@@ -4,6 +4,7 @@ SCRIPT_REPO="https://github.com/kcat/openal-soft.git"
 SCRIPT_COMMIT="c157b87cb9eb58d747748e49f82ee4a64d1dcf8b"
 
 ffbuild_enabled() {
+    [[ $TARGET == winarm* ]] && return -1
     (( $(ffbuild_ffver) > 501 )) || return -1
     return 0
 }

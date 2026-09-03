@@ -3,6 +3,7 @@
 SCRIPT_REPO="https://git.savannah.gnu.org/git/libcdio.git"
 
 ffbuild_enabled() {
+    [[ $TARGET == winarm* ]] && return -1
     return 0
 }
 

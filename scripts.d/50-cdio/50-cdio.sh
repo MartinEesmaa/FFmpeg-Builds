@@ -3,6 +3,7 @@
 SCRIPT_REPO="https://github.com/rocky/libcdio-paranoia"
 
 ffbuild_enabled() {
+    [[ $TARGET == winarm* ]] && return -1
     return 0
 }
 
