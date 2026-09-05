@@ -4,6 +4,8 @@ SCRIPT_REPO="https://github.com/Fraunhofer-IIS/mpeghdec"
 SCRIPT_COMMIT="4448b69738da2fa5f2f2f2b0ce29eea32509e046"
 
 ffbuild_enabled() {
+    [[ $TARGET == win32 ]] && return -1
+    [[ $TARGET == winarm64 ]] && return -1
     [[ $VARIANT == nonfree* ]] || return -1
     return 0
 }
