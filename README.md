@@ -47,21 +47,19 @@ libtesseract libtorch opengl librabbitmq
 
 Old features or some errors due to compilation or/and limited which didn't fit:
 
-* `libcaca` - Only Linux builds works, but Windows compilation error.
-* `libsvtjpgxs` - Segmentation error after test of encode and also decoding shows weird corrupted image result of code on FFplay.
-* `libdatachannel` - Compilation error for reason undefined reference.
-* `librtmp` - No need to enable external RTMP feature, FFmpeg has already have native RTMP feature implemented.
-* `libklvanc` - Windows build failed to compile, but Linux works and it is not yet enabled until DeckLick Linux feature is available.
-* `libsmbclient` - Too complicated for to install little bit, later...
-* `libmpeghdec` - Only Windows & Linux 64-bit architectures works, but others are not working due to error compilations.
+- `libcaca` - Only Linux builds works, but Windows compilation error.
+- `libsvtjpgxs` - Segmentation error after test of encode and also decoding shows weird corrupted image result of code on FFplay.
+- `libdatachannel` - Compilation error for reason undefined reference.
+- `librtmp` - No need to enable external RTMP feature, FFmpeg has already have native RTMP feature implemented.
+- `libklvanc` - Windows build failed to compile, Linux works and it is not yet enabled until DeckLick feature of Linux is available.
+- `libsmbclient` - Too complicated to install, maybe later...
+- `libmpeghdec` - Only Windows & Linux of x86_64/amd64 architectures works, also now it is static to avoid symbol isolation against libfdk-aac.
 
 For AudioToolbox encoder, it is only Windows support.
 
-Two choices for to install [iTunes](https://www.apple.com/itunes/) or use portable DLL files from iTunes without installed which is called [QTFiles](https://github.com/AnimMouse/QTFiles).
+Two choices for to install [iTunes](https://www.apple.com/itunes/) of standalone Windows version or use portable DLL files from iTunes without installed which is called [QTFiles](https://github.com/AnimMouse/QTFiles), see the instructions via link.
 
-Note: Install iTunes using Windows version, but Microsoft Store version may be not kinda sure.
-
-Or another method is to install [QTFiles](https://github.com/AnimMouse/QTFiles) for iTunes DLL portables for use QAAC and FFmpeg, see the instructions by link.
+Note: Install iTunes using Windows version, but Microsoft Store version may not kinda work for sure.
 
 The third option is you can manually copy DLL files from iTunes:
 
@@ -75,9 +73,7 @@ CoreAudioToolbox.dll libdispatch.dll CoreFoundation.dll objc.dll libicuin.dll AS
 
 **Hint:** You can copy these DLL files from iTunes right next to qaac.exe or/and ffmpeg.exe.
 
-## Fraunhofer IIS MPEG-H decoder
-
-REMINDER: This didn't work due to xHE-AAC audio files were not playing when mpeghdec external feature is enabled connected to libFDK modified source. I will reenable it once I fixed to mpeghdec problem again. I apology with that. :(
+## Fraunhofer IIS MPEG-H 3D Audio decoder
 
 Description: Experimental Fraunhofer IIS MPEG-H 3D Audio decoding support (requires command argument: `-channel_layout`)
 
@@ -94,7 +90,9 @@ ffmpeg_vvceasy -channel_layout mono -i MHM.mp4 MHM.wav
 ffmpeg_vvceasy -channel_layout stereo -i MHM.mp4 MHM.wav
 ```
 
-See the more info of manual standard channel layouts [here](https://trac.ffmpeg.org/wiki/AudioChannelManipulation#Listchannelnamesandstandardchannellayouts).
+See the more info of manual standard channel layouts [right here](https://trac.ffmpeg.org/wiki/AudioChannelManipulation#Listchannelnamesandstandardchannellayouts).
+
+OLD reminder: This didn't work due to xHE-AAC audio files were not playing when mpeghdec external feature is enabled connected to libFDK modified source. I will reenable it once I fixed to mpeghdec problem again. I apology with that. :(
 
 ## Auto-Builds
 
@@ -135,6 +133,7 @@ On success, the resulting zip file will be in the `artifacts` subdir.
 Available targets:
 * `win64` (x86_64 Windows)
 * `win32` (x86 Windows)
+* `winarm64` (arm64 Windows)
 * `linux64` (x86_64 Linux, glibc>=2.28, linux>=4.18)
 * `linuxarm64` (arm64 (aarch64) Linux, glibc>=2.28, linux>=4.18)
 
