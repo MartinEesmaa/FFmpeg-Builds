@@ -38,6 +38,7 @@ ffbuild_depends() {
     echo ilbc
     echo kvazaar
     echo lc3
+    echo libaribb24
     echo libaribcaption
     echo libass
     echo libbluray
@@ -51,7 +52,9 @@ ffbuild_depends() {
     echo libmysofa
     echo libopus
     echo libplacebo
+    echo libpng
     echo librist
+    echo librsvg
     echo libssh
     echo libtheora
     echo libvpx
@@ -73,6 +76,7 @@ ffbuild_depends() {
     echo quirc
     echo rav1e
     echo rubberband
+    echo rustdedup
     echo schannel
     echo sdl
     echo snappy

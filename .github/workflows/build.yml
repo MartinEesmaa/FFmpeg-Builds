@@ -27,7 +27,7 @@ jobs:
   pre_check:
     name: Pre Checks
     if: ${{ github.event.inputs.buildOnly != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Repo Check
         run: |
@@ -48,10 +48,10 @@ jobs:
         runner: [ubuntu-latest,ubuntu-24.04-arm]
     runs-on: ${{ matrix.runner }}
     steps:
-      - name: Free Disk-Space
-        run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /opt/ghc /usr/local/.ghcup /usr/local/lib/android && df -h
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Free Disk-Space
+        run: ./util/free_disk_space.sh
       - name: Install buildx
         uses: docker/setup-buildx-action@v4
         with:
@@ -128,10 +128,10 @@ jobs:
       matrix:
         target: [win32,win64,winarm64,linux32,linux64,linuxarm64,linuxppc64,linuxmips64,linuxriscv64]
     steps:
-      - name: Free Disk-Space
-        run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /opt/ghc /usr/local/.ghcup /usr/local/lib/android && df -h
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Free Disk-Space
+        run: ./util/free_disk_space.sh
       - name: Install buildx
         uses: docker/setup-buildx-action@v4
         with:
@@ -185,10 +185,10 @@ jobs:
         target: [win64,winarm64,linux64,linuxarm64,win32]
         variant: [nonfree,nonfree-shared]
     steps:
-      - name: Free Disk-Space
-        run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /opt/ghc /usr/local/.ghcup /usr/local/lib/android && df -h
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Free Disk-Space
+        run: ./util/free_disk_space.sh
       - name: Install buildx
         uses: docker/setup-buildx-action@v4
         with:
@@ -251,10 +251,10 @@ jobs:
         target: [win64,winarm64,linux64,linuxarm64,win32]
         variant: [nonfree,nonfree-shared]
     steps:
-      - name: Free Disk-Space
-        run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /opt/ghc /usr/local/.ghcup /usr/local/lib/android && df -h
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Free Disk-Space
+        run: ./util/free_disk_space.sh
       - name: Login to Docker
         uses: docker/login-action@v4
         with:
@@ -282,10 +282,12 @@ jobs:
     needs: build_ffmpeg
     runs-on: ubuntu-latest
     steps:
-      - name: Free Disk-Space
-        run: df -h && sudo apt-get clean && docker system prune -a -f && sudo rm -rf /opt/ghc /usr/local/.ghcup /usr/local/lib/android && df -h
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libarchive-tools p7zip-full
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Free Disk-Space
+        run: ./util/free_disk_space.sh
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/AcademySoftwareFoundation/openapv.git"
-SCRIPT_COMMIT="d625af974550427e638574db61c270fe7f8c5a73"
+SCRIPT_COMMIT="a58ce739be0dfb083643d929aee8f0e0ba9bdf63"
 
 ffbuild_enabled() {
     (( $(ffbuild_ffver) > 701 )) || return -1
@@ -36,12 +36,6 @@ ffbuild_dockerbuild() {
         echo "Libs.private: -lm"
         echo "Cflags.private: -DOAPV_STATIC_DEFINE"
     } >> "$FFBUILD_DESTPREFIX"/lib/pkgconfig/oapv.pc
-
-    printf '\n%s\n%s\n%s\n%s\n' \
-        '#ifndef OLD_APV_API_MACRO' \
-        '#define OLD_APV_API_MACRO' \
-        '#define oapvm_create(err) oapvm_create(&(oapvm_cdesc_t){ 0 }, (err))' \
-        '#endif' >> "$FFBUILD_DESTPREFIX"/include/oapv/oapv.h
 }
 
 ffbuild_configure() {

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://code.videolan.org/videolan/libbluray.git"
-SCRIPT_COMMIT="065247e5ef40ccf39857db81e2c1368354a23ef8"
+SCRIPT_COMMIT="a24f4fad4d62893de647abc8671397747b2359dd"
 
 ffbuild_depends() {
     echo base
@@ -18,6 +18,9 @@ ffbuild_dockerbuild() {
     # stop the static library from exporting symbols when linked into a shared lib
     sed -i 's/-DBLURAY_API_EXPORT/-DBLURAY_API_EXPORT_DISABLED/g' src/meson.build
 
+    # libssp is gone from a lot of toolchains, and part of the runtime automatically
+    sed -i "/'ssp'/d" meson.build
+
     mkdir build && cd build
 
     local myconf=(
@@ -27,7 +30,7 @@ ffbuild_dockerbuild() {
         -Denable_tools=false
         -Denable_devtools=false
         -Denable_examples=false
-        -Dbdj_jar=disabled
+        -Dbdj_jar=enabled
         -Dfontconfig=enabled
         -Dfreetype=enabled
         -Dlibxml2=enabled

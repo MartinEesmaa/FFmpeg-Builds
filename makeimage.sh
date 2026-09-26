@@ -12,7 +12,7 @@ docker buildx inspect ffbuilder &>/dev/null || docker buildx create \
     --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1
 
 if [[ -z "$NOCLEAN" ]]; then
-    trap "docker buildx rm -f ffbuilder" EXIT
+    trap 'rc=$?; [[ $rc -eq 0 ]] && docker buildx rm -f ffbuilder; exit $rc' EXIT
 fi
 
 GH_REPO="${REGISTRY}/${REPO}"
@@ -36,7 +36,7 @@ bake_images() {
             to_bake '  tags       = ["%s"]' "$BASE_IMAGE"
             to_bake '  output     = ["type=docker"]'
             to_bake '  cache-from = ["type=local,src=.cache/%s"]' "${BASE_IMAGE/:/_}"
-            to_bake '  cache-to   = ["type=local,mode=max,dest=.cache/%s"]' "${BASE_IMAGE/:/_}"
+            to_bake '  cache-to   = ["type=local,mode=max,compression=zstd,compression-level=1,dest=.cache/%s"]' "${BASE_IMAGE/:/_}"
             to_bake '}'
 
             to_bake 'target "target-base" {'
@@ -46,7 +46,7 @@ bake_images() {
             to_bake '  tags       = ["%s"]' "$TARGET_IMAGE"
             to_bake '  output     = ["type=docker"]'
             to_bake '  cache-from = ["type=local,src=.cache/%s"]' "${TARGET_IMAGE/:/_}"
-            to_bake '  cache-to   = ["type=local,mode=max,dest=.cache/%s"]' "${TARGET_IMAGE/:/_}"
+            to_bake '  cache-to   = ["type=local,mode=max,compression=zstd,compression-level=1,dest=.cache/%s"]' "${TARGET_IMAGE/:/_}"
             to_bake '}'
         fi
 
@@ -58,7 +58,7 @@ bake_images() {
         to_bake '  tags       = ["%s"]' "$IMAGE"
         to_bake '  output     = ["type=docker"]'
         to_bake '  cache-from = ["type=local,src=.cache/%s"]' "${IMAGE/:/_}"
-        to_bake '  cache-to   = ["type=local,mode=max,dest=.cache/%s"]' "${IMAGE/:/_}"
+        to_bake '  cache-to   = ["type=local,mode=max,compression=zstd,compression-level=1,dest=.cache/%s"]' "${IMAGE/:/_}"
         to_bake '}'
     } | tee /dev/stderr | docker buildx --builder ffbuilder bake -f - "$@"
 }
