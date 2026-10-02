@@ -58,12 +58,34 @@ for addin in "${ADDINS[@]}"; do
 )
 done
 
-PREVLAYER="base"
-for ID in $(ls -1d scripts.d/??-* | sed -s 's|^.*/\(..\).*|\1|' | sort -u); do
-    LAYER="layer-$ID"
+# Whenever wine is used it would create new prefix in every stage. While deps
+# stages does not end up in final image layers, they still exist in build cache.
+# Use single shared wine prefix to avoid duplicating both work and layers.
+STAGELAYER="$BASELAYER"
+if [[ $TARGET == win32 || $TARGET == win64 ]]; then
+    STAGELAYER="stage-layer"
+    to_df "FROM ${BASELAYER} AS ${STAGELAYER}"
+    # Wait for wineserver to finish writing the registry after wineboot.
+    to_df "RUN wineboot --init && while pgrep -x wineserver >/dev/null; do sleep 1; done"
+fi
 
-    for STAGE in scripts.d/$ID-*; do
-        to_df "FROM $PREVLAYER AS $(layername "$STAGE")"
+ENTRYSCRIPT="$(ls -1d scripts.d/* | tail -n 1)"
+declare -A FILLED_DEPS
+while true; do
+    CURDEPS=($(get_filled_deps "$ENTRYSCRIPT" | sort -u))
+    if [[ "${CURDEPS[@]}" == "$ENTRYSCRIPT" ]]; then
+        break
+    fi
+    for CURDEP in "${CURDEPS[@]}"; do
+        FILLED_DEPS["$CURDEP"]="1"
+
+        SCRIPT="$(resolvescript "$CURDEP")"
+        (
+            SELF="$SCRIPT"
+            source "$SCRIPT"
+            ffbuild_enabled || exit $?
+            to_df "FROM ${STAGELAYER} AS ${CURDEP}"
+        ) || continue
 
         if [[ -f "$STAGE" ]]; then
             exec_dockerstage "$STAGE"
