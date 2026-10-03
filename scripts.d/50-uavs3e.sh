@@ -18,6 +18,9 @@ ffbuild_dockerbuild() {
     mkdir build/linux
     cd build/linux
 
+    export CFLAGS="$CFLAGS -Wno-error=incompatible-pointer-types"
+    export CXXFLAGS="$CXXFLAGS -Wno-error=incompatible-pointer-types"
+
     cmake -DCMAKE_TOOLCHAIN_FILE="$FFBUILD_CMAKE_TOOLCHAIN" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$FFBUILD_PREFIX" \
         -DCOMPILE_10BIT=1 -DCOMPILE_FFMPEG=ON -DBUILD_SHARED_LIBS=NO -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ../..
     make -j$(nproc)
