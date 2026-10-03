@@ -1,9 +1,10 @@
 ARG GH_REPO=ghcr.io/martineesmaa/ffmpeg-builds
-FROM $GH_REPO/base:latest
+ARG BASE_TAG_SUFFIX=
+FROM $GH_REPO/base:latest${BASE_TAG_SUFFIX}
 
 RUN \
     git clone --filter=blob:none https://github.com/mstorsjo/llvm-mingw /llvm-mingw && cd /llvm-mingw && \
-    ./build-all.sh --with-clang --disable-lldb --disable-lldb-mi /opt/llvm-mingw && \
+    ./build-all.sh --use-linker=bfd --disable-lldb --disable-lldb-mi /opt/llvm-mingw && \
     cd / && \
     rm -rf llvm-mingw
 

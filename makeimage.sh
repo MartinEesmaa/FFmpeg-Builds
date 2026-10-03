@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xe
+set -xeo pipefail
 cd "$(dirname "$0")"
 source util/vars.sh
 

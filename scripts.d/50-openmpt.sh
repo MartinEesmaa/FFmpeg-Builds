@@ -16,7 +16,6 @@ ffbuild_enabled() {
 }
 
 ffbuild_dockerbuild() {
-
     local myconf=(
         PREFIX="$FFBUILD_PREFIX"
         CXXSTDLIB_PCLIBSPRIVATE="-lstdc++"
