@@ -3,6 +3,11 @@
 SCRIPT_REPO="https://github.com/hoene/libmysofa"
 SCRIPT_COMMIT="dd315a8ec1fee7193d40e4a59b12c5590a4a918c"
 
+ffbuild_depends() {
+    echo base
+    echo zlib
+}
+
 ffbuild_enabled() {
     return 0
 }
