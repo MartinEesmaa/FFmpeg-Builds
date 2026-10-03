@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SCRIPT_REPO="https://github.com/mpeg5/xeve"
+SCRIPT_REPO="https://github.com/mpeg5/xeve.git"
+SCRIPT_COMMIT="4eda6ca8e0c72fcc814f51800fde267769f9c118"
 
 ffbuild_enabled() {
     [[ $TARGET == *arm64 ]] && return -1
@@ -10,7 +11,7 @@ ffbuild_enabled() {
 ffbuild_dockerbuild() {
 
     if [ ! -f "version.txt" ]; then
-        echo v0.5.1 >> version.txt
+        echo v0.7.0 >> version.txt
     fi
     
     mkdir build && cd build

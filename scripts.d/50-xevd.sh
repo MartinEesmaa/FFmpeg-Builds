@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SCRIPT_REPO="https://github.com/mpeg5/xevd"
+SCRIPT_REPO="https://github.com/mpeg5/xevd.git"
+SCRIPT_COMMIT="0570fcbf169dfdf82956918c498ebf15d1def5ce"
 
 ffbuild_enabled() {
     [[ $TARGET == *arm64 ]] && return -1
@@ -9,10 +10,7 @@ ffbuild_enabled() {
 
 ffbuild_dockerbuild() {
 
-    if [ ! -f "version.txt" ]; then
-        echo v0.5.0 >> version.txt
-    fi
-    
+    echo v0.7.0 > version.txt
     mkdir build && cd build
 
     cmake -DCMAKE_TOOLCHAIN_FILE="$FFBUILD_CMAKE_TOOLCHAIN" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX="$FFBUILD_PREFIX" ..

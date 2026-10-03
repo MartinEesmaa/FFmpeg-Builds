@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/fraunhoferhhi/vvdec"
-SCRIPT_COMMIT="fb5071301f081ac5cdbb7b1d53d0e5e38d416192"
+SCRIPT_COMMIT="999a7e4a1e4cafdf886c11422a8e464053319540"
 
 ffbuild_enabled() {
     [[ $TARGET == win32 ]] && return -1
@@ -14,12 +14,15 @@ ffbuild_dockerbuild() {
     mkdir build && cd build
 
     local armsimd=()
-    if [[ $TARGET == linuxarm64 ]]; then
+    if [[ $TARGET == *arm* ]]; then
         armsimd+=( -DVVDEC_ENABLE_ARM_SIMD=ON )
 
         if [[ "$CC" != *clang* ]]; then
             export CFLAGS="$CFLAGS -fpermissive -Wno-error=uninitialized -Wno-error=maybe-uninitialized"
             export CXXFLAGS="$CXXFLAGS -fpermissive -Wno-error=uninitialized -Wno-error=maybe-uninitialized"
+        else
+            export CFLAGS="$CFLAGS -Wno-error=deprecated-literal-operator"
+            export CXXFLAGS="$CXXFLAGS -Wno-error=deprecated-literal-operator"
         fi
     fi
 

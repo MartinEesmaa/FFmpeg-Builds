@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SCRIPT_REPO="https://github.com/rocky/libcdio-paranoia"
+SCRIPT_REPO="https://github.com/libcdio/libcdio-paranoia.git"
+SCRIPT_COMMIT="384f4dac7e211cce67a14f3df53fc596965b6c94"
 
 ffbuild_enabled() {
     [[ $TARGET == winarm* ]] && return -1

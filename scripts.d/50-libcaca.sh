@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/cacalabs/libcaca.git"
-SCRIPT_COMMIT="f42aa68fc798db63b7b2a789ae8cf5b90b57b752"
+SCRIPT_COMMIT="de48e1a0888caabdc6276afdea46e9096d0adb05"
 
 ffbuild_enabled() {
     [[ $TARGET == linux* ]] || return 1
