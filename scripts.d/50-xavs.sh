@@ -23,7 +23,7 @@ ffbuild_dockerbuild() {
         myconf+=(
             --host="$FFBUILD_TOOLCHAIN"
             --cross-prefix="$FFBUILD_CROSS_PREFIX"
-            --extra-cflags="-Wno-error=int-conversion"
+            --extra-cflags="-Wno-error=int-conversion -Wno-error=declaration-missing-parameter-type"
         )
     else
         echo "Unknown target"
