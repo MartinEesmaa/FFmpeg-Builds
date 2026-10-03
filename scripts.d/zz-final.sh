@@ -22,7 +22,6 @@ ffbuild_depends() {
     echo vulkan
     echo amf
     echo aom
-    echo aribb24
     echo audiotoolbox
     echo avisynth
     echo bs2b
