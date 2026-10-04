@@ -4,7 +4,7 @@ SCRIPT_REPO="https://github.com/libcdio/libcdio-C.git"
 SCRIPT_COMMIT="68ea374f83d5e63122168e4e182b15ba10e0d2eb"
 
 ffbuild_enabled() {
-    [[ $TARGET == winarm* ]] && return -1
+    [[ $TARGET == win* ]] && return -1
     return 0
 }
 
@@ -23,6 +23,7 @@ ffbuild_dockerbuild() {
         --without-iso-info
         --without-iso-read
         --disable-cpp-progs
+        --disable-example-progs
         --with-pic
     )
 

@@ -4,7 +4,7 @@ SCRIPT_REPO="https://github.com/libcdio/libcdio-paranoia.git"
 SCRIPT_COMMIT="384f4dac7e211cce67a14f3df53fc596965b6c94"
 
 ffbuild_enabled() {
-    [[ $TARGET == winarm* ]] && return -1
+    [[ $TARGET == win* ]] && return -1
     return 0
 }
 
@@ -17,6 +17,7 @@ ffbuild_dockerbuild() {
         --enable-static
         --disable-maintainer-mode
         --disable-example-progs
+        --disable-cpp-progs
         --with-pic
     )
 

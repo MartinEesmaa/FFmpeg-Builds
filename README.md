@@ -48,12 +48,14 @@ libtesseract libtorch opengl librabbitmq
 Old features or some errors due to compilation or/and limited which didn't fit:
 
 - `libcaca` - Only Linux builds works, but Windows compilation error.
+- `libcdio` - Only Linux builds works, but all Windows builds compile error of latest compilers.
 - `libsvtjpgxs` - Segmentation error after test of encode and also decoding shows weird corrupted image result of code on FFplay.
 - `libdatachannel` - Compilation error for reason undefined reference.
 - `librtmp` - No need to enable external RTMP feature, FFmpeg has already have native RTMP feature implemented.
 - `libklvanc` - Windows build failed to compile, Linux works and it is not yet enabled until DeckLick feature of Linux is available.
 - `libsmbclient` - Too complicated to install, maybe later...
 - `libmpeghdec` - Only Windows & Linux of x86_64/amd64 architectures works, also now it is static to avoid symbol isolation against libfdk-aac.
+- `whisper` - Only Windows arm64 compile error due to latest compiler, I will try to fix later.
 
 For AudioToolbox encoder, it is only Windows support.
 
