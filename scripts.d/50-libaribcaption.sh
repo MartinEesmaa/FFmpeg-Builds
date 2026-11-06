@@ -1,12 +1,11 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/xqq/libaribcaption.git"
-SCRIPT_COMMIT="c64c23b8905ba514b87c9789269e9f66f949ffe0"
+SCRIPT_COMMIT="37dde0f32652c32aa98bf92278944d1cfb2e7354"
 
 ffbuild_depends() {
     echo base
     echo fonts
-    echo openssl
 }
 
 ffbuild_enabled() {
@@ -18,9 +17,6 @@ ffbuild_dockerbuild() {
     mkdir build
     cd build
 
-    export CFLAGS="$CFLAGS -DHAVE_OPENSSL=1"
-    export CXXFLAGS="$CXXFLAGS -DHAVE_OPENSSL=1"
-
     cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$FFBUILD_CMAKE_TOOLCHAIN" -DCMAKE_INSTALL_PREFIX="$FFBUILD_PREFIX" \
         -DARIBCC_SHARED_LIBRARY=OFF -DARIBCC_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=OFF \
         -DARIBCC_USE_FREETYPE=ON -DARIBCC_USE_EMBEDDED_FREETYPE=OFF \
@@ -29,7 +25,7 @@ ffbuild_dockerbuild() {
     ninja -j$(nproc)
     DESTDIR="$FFBUILD_DESTDIR" ninja install
 
-    echo "Libs.private: -lstdc++ -lcrypto" >> "$FFBUILD_DESTPREFIX"/lib/pkgconfig/libaribcaption.pc
+    echo "Libs.private: -lstdc++" >> "$FFBUILD_DESTPREFIX"/lib/pkgconfig/libaribcaption.pc
 }
 
 ffbuild_configure() {
