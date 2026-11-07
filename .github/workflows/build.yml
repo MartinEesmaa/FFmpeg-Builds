@@ -89,11 +89,14 @@ jobs:
         run: T="$(echo -n ${{ github.token }} | sha256sum | head -c 64)" && echo -e "::add-mask::${T}\n::stop-commands::${T}"
       - name: Build target base image
         uses: docker/build-push-action@v7
+        env:
+          SOURCE_DATE_EPOCH: 0
         with:
           context: images/base
           pull: true
           push: true
           provenance: false
+          sbom: false
           tags: ${{ steps.imagename.outputs.name }}:latest-${{ env.ARCH }}
           cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
           cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
@@ -225,11 +228,14 @@ jobs:
         run: T="$(echo -n ${{ github.token }} | sha256sum | head -c 64)" && echo -e "::add-mask::${T}\n::stop-commands::${T}"
       - name: Build target base image
         uses: docker/build-push-action@v7
+        env:
+          SOURCE_DATE_EPOCH: 0
         with:
           context: images/base-${{ matrix.target }}
           pull: true
           push: true
           provenance: false
+          sbom: false
           tags: ${{ steps.imagename.outputs.name }}:latest-${{ env.ARCH }}
           cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
           cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
@@ -362,11 +368,14 @@ jobs:
           fail-on-cache-miss: true
       - name: Build target base image
         uses: docker/build-push-action@v7
+        env:
+          SOURCE_DATE_EPOCH: 0
         with:
           context: .
           pull: true
           push: true
           provenance: false
+          sbom: false
           tags: ${{ steps.imagename.outputs.name }}:latest-${{ env.ARCH }}
           cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
           cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache-${{ env.ARCH }}
