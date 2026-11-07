@@ -20,6 +20,10 @@ on:
   schedule:
     - cron: '0 12 * * *'
 
+permissions:
+  contents: write
+  packages: write
+
 env:
   DOCKER_BUILDKIT: 1
 
