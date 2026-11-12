@@ -9,6 +9,7 @@ ffbuild_depends() {
 }
 
 ffbuild_enabled() {
+    [[ $VARIANT == nonfree* ]] || return -1
     return 0
 }
 
