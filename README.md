@@ -21,6 +21,7 @@ Sometimes rarely I had to manually fix older compatibility issues like Windows f
 - Additional external features follows libbsb2, CD reading, ModPlug, QR encoding/decoding.
 - External features of video by AVS3, Fraunhofer HHI VVDEC, AVS, MPEG-5 EVC, MPEG-5 LCEVC decoder.
 - External features of audio by ILBC, Google LC3, Microsoft GSM, MP3 Shine, Speex, AMR-WB, CELT and MPEG-H 3D Audio encoder from Ittiam.
+- New Fraunhofer FDK xHE-AAC external encoder
 
 ### To-do tasks
 
