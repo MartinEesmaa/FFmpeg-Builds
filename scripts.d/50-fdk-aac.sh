@@ -34,7 +34,11 @@ ffbuild_dockerbuild() {
 }
 
 ffbuild_configure() {
-    echo --enable-libfdk-aac --enable-libfdk-xhe-aac
+    if [[ $TARGET == win32 ]]; then
+        echo --enable-libfdk-aac
+    else
+        echo --enable-libfdk-aac --enable-libfdk-xhe-aac
+    fi
 }
 
 ffbuild_unconfigure() {

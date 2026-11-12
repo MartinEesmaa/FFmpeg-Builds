@@ -57,6 +57,7 @@ Old features or some errors due to compilation or/and limited which didn't fit:
 - `libmpeghdec` - Only Windows & Linux of x86_64/amd64 architectures works, also now it is static to avoid symbol isolation against libfdk-aac.
 - `whisper` - Only Windows arm64 compile error due to latest compiler, I will try to fix later.
 - `liblcevc_dec` - Lots of undefined references errors of latest version. Temporarily disabled feature until manual fix is done in future. I apologize for that.
+- `libfdk-xhe-aac` - Only Windows 32-bit architecture doesn't work due to FFmpeg detected undefined reference when configuration before compile.
 
 For AudioToolbox encoder, it is only Windows support.
 
