@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# crosstool-NG 1.29.0.7_b1a94f6 Configuration
+# crosstool-NG 1.29.0.36_fbb6372 Configuration
 #
 CT_CONFIGURE_has_static_link=y
 CT_CONFIGURE_has_cxx11=y
@@ -21,7 +21,6 @@ CT_CONFIGURE_has_python_3_4_or_newer=y
 CT_CONFIGURE_has_bison_2_7_or_newer=y
 CT_CONFIGURE_has_bison_3_0_4_or_newer=y
 CT_CONFIGURE_has_python=y
-CT_CONFIGURE_has_dtc=y
 CT_CONFIGURE_has_svn=y
 CT_CONFIGURE_has_git=y
 CT_CONFIGURE_has_md5sum=y
@@ -30,7 +29,7 @@ CT_CONFIGURE_has_sha256sum=y
 CT_CONFIGURE_has_sha512sum=y
 CT_CONFIGURE_has_install_with_strip_program=y
 CT_CONFIGURE_has_zstd=y
-CT_VERSION="1.29.0.7_b1a94f6"
+CT_VERSION="1.29.0.36_fbb6372"
 CT_VCHECK=""
 CT_CONFIG_VERSION_ENV="4"
 CT_CONFIG_VERSION_CURRENT="4"
@@ -80,7 +79,9 @@ CT_DOWNLOAD_AGENT_WGET=y
 CT_CONNECT_TIMEOUT=10
 CT_DOWNLOAD_WGET_OPTIONS="--passive-ftp --tries=3 -nc --progress=dot:binary"
 # CT_ONLY_DOWNLOAD is not set
-# CT_USE_MIRROR is not set
+CT_USE_MIRROR=y
+# CT_FORCE_MIRROR is not set
+CT_MIRROR_BASE_URL="https://ftpmirror.gnu.org/gnu"
 CT_VERIFY_DOWNLOAD_DIGEST=y
 CT_VERIFY_DOWNLOAD_DIGEST_SHA512=y
 # CT_VERIFY_DOWNLOAD_DIGEST_SHA256 is not set
@@ -347,10 +348,14 @@ CT_BINUTILS_later_than_2_39=y
 CT_BINUTILS_2_39_or_later=y
 CT_BINUTILS_later_than_2_30=y
 CT_BINUTILS_2_30_or_later=y
+CT_BINUTILS_later_than_2_28=y
+CT_BINUTILS_2_28_or_later=y
 CT_BINUTILS_later_than_2_27=y
 CT_BINUTILS_2_27_or_later=y
 CT_BINUTILS_later_than_2_26=y
 CT_BINUTILS_2_26_or_later=y
+CT_BINUTILS_later_than_2_25=y
+CT_BINUTILS_2_25_or_later=y
 
 #
 # GNU binutils
@@ -602,14 +607,14 @@ CT_MOLD_PATCH_GLOBAL=y
 # CT_MOLD_PATCH_LOCAL_BUNDLED is not set
 # CT_MOLD_PATCH_NONE is not set
 CT_MOLD_PATCH_ORDER="global"
-CT_MOLD_V_2_42_0=y
+CT_MOLD_V_2_42_1=y
 # CT_MOLD_V_2_41_0 is not set
 # CT_MOLD_V_2_40_4 is not set
 # CT_MOLD_V_2_39_1 is not set
 # CT_MOLD_V_2_38_1 is not set
 # CT_MOLD_V_2_37_1 is not set
 # CT_MOLD_V_2_36_0 is not set
-CT_MOLD_VERSION="2.42.0"
+CT_MOLD_VERSION="2.42.1"
 CT_MOLD_MIRRORS="https://github.com/rui314/mold/archive/refs/tags"
 CT_MOLD_ARCHIVE_FILENAME="v@{version}"
 CT_MOLD_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
@@ -649,18 +654,21 @@ CT_GETTEXT_PATCH_GLOBAL=y
 # CT_GETTEXT_PATCH_LOCAL_BUNDLED is not set
 # CT_GETTEXT_PATCH_NONE is not set
 CT_GETTEXT_PATCH_ORDER="global"
-CT_GETTEXT_V_0_26=y
+CT_GETTEXT_V_1_0=y
+# CT_GETTEXT_V_0_26 is not set
 # CT_GETTEXT_V_0_23_1 is not set
 # CT_GETTEXT_V_0_22_5 is not set
 # CT_GETTEXT_V_0_21 is not set
 # CT_GETTEXT_V_0_20_1 is not set
 # CT_GETTEXT_V_0_19_8_1 is not set
-CT_GETTEXT_VERSION="0.26"
+CT_GETTEXT_VERSION="1.0"
 CT_GETTEXT_MIRRORS="$(CT_Mirrors GNU gettext)"
 CT_GETTEXT_ARCHIVE_FILENAME="@{pkg_name}-@{version}"
 CT_GETTEXT_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
 CT_GETTEXT_ARCHIVE_FORMATS=".tar.xz .tar.gz"
 CT_GETTEXT_SIGNATURE_FORMAT="packed/.sig"
+CT_GETTEXT_1_0_or_later=y
+CT_GETTEXT_1_0_or_older=y
 CT_GETTEXT_later_than_0_23=y
 CT_GETTEXT_0_23_or_later=y
 CT_GETTEXT_later_than_0_21=y
@@ -716,7 +724,8 @@ CT_ISL_PATCH_GLOBAL=y
 # CT_ISL_PATCH_LOCAL_BUNDLED is not set
 # CT_ISL_PATCH_NONE is not set
 CT_ISL_PATCH_ORDER="global"
-CT_ISL_V_0_27=y
+CT_ISL_V_0_28=y
+# CT_ISL_V_0_27 is not set
 # CT_ISL_V_0_26 is not set
 # CT_ISL_V_0_25 is not set
 # CT_ISL_V_0_24 is not set
@@ -729,7 +738,7 @@ CT_ISL_V_0_27=y
 # CT_ISL_V_0_17 is not set
 # CT_ISL_V_0_16 is not set
 # CT_ISL_V_0_15 is not set
-CT_ISL_VERSION="0.27"
+CT_ISL_VERSION="0.28"
 CT_ISL_MIRRORS="https://libisl.sourceforge.io"
 CT_ISL_ARCHIVE_FILENAME="@{pkg_name}-@{version}"
 CT_ISL_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
@@ -755,12 +764,13 @@ CT_MPC_PATCH_GLOBAL=y
 # CT_MPC_PATCH_LOCAL_BUNDLED is not set
 # CT_MPC_PATCH_NONE is not set
 CT_MPC_PATCH_ORDER="global"
-CT_MPC_V_1_3=y
-CT_MPC_VERSION="1.3.1"
+CT_MPC_V_1_4=y
+# CT_MPC_V_1_3 is not set
+CT_MPC_VERSION="1.4.1"
 CT_MPC_MIRRORS="https://www.multiprecision.org/downloads $(CT_Mirrors GNU mpc)"
 CT_MPC_ARCHIVE_FILENAME="@{pkg_name}-@{version}"
 CT_MPC_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
-CT_MPC_ARCHIVE_FORMATS=".tar.gz"
+CT_MPC_ARCHIVE_FORMATS=".tar.xz"
 CT_MPC_SIGNATURE_FORMAT="packed/.sig"
 CT_COMP_LIBS_MPFR=y
 CT_COMP_LIBS_MPFR_PKG_KSYM="MPFR"
@@ -798,9 +808,10 @@ CT_ZLIB_PATCH_GLOBAL=y
 # CT_ZLIB_PATCH_LOCAL_BUNDLED is not set
 # CT_ZLIB_PATCH_NONE is not set
 CT_ZLIB_PATCH_ORDER="global"
-CT_ZLIB_V_1_3_1=y
+CT_ZLIB_V_1_3_2=y
+# CT_ZLIB_V_1_3_1 is not set
 # CT_ZLIB_V_1_2_13 is not set
-CT_ZLIB_VERSION="1.3.1"
+CT_ZLIB_VERSION="1.3.2"
 CT_ZLIB_MIRRORS="https://github.com/madler/zlib/releases/download/v${CT_ZLIB_VERSION} https://www.zlib.net/"
 CT_ZLIB_ARCHIVE_FILENAME="@{pkg_name}-@{version}"
 CT_ZLIB_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
