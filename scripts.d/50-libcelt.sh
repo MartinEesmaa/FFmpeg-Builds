@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/MartinEesmaa/celt.git"
-SCRIPT_COMMIT="3671477887c2ca8414f2aa1cabbca4beeb0f7812"
+SCRIPT_COMMIT="1bc7188fb8d33dc6e5ba0948a975b8836b430249"
 
 ffbuild_enabled() {
     return 0
