@@ -56,6 +56,7 @@ Old features or some errors due to compilation or/and limited which didn't fit:
 - `libsmbclient` - Too complicated to install, maybe later...
 - `libmpeghdec` - Only Windows & Linux of x86_64/amd64 architectures works, also now it is static to avoid symbol isolation against libfdk-aac.
 - `whisper` - Only Windows arm64 compile error due to latest compiler, I will try to fix later.
+- `liblcevc_dec` - Lots of undefined references errors of latest version. Temporarily disabled feature until manual fix is done in future. I apologize for that.
 
 For AudioToolbox encoder, it is only Windows support.
 
