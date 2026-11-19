@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/Netflix/vmaf.git"
-SCRIPT_COMMIT="f712fa7564fe49b12991d83920b83573af2ae063"
+SCRIPT_COMMIT="cf677baaa039723876fff8c2677164f25102e684"
 
 ffbuild_enabled() {
     return 0
@@ -10,10 +10,6 @@ ffbuild_enabled() {
 ffbuild_dockerbuild() {
     # Kill build of unused and broken tools
     echo > libvmaf/tools/meson.build
-
-    sed -i -E 's/([^.>:_[:alnum:]])swap\(/\1libsvm_swap(/g' libvmaf/src/svm.cpp
-    sed -i -E 's/([^.>:_[:alnum:]])min\(/\1libsvm_min(/g' libvmaf/src/svm.cpp
-    sed -i -E 's/([^.>:_[:alnum:]])max\(/\1libsvm_max(/g' libvmaf/src/svm.cpp
 
     mkdir build && cd build
 
